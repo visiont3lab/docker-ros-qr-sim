@@ -36,7 +36,7 @@ make
 
 ## Case 2) Implementing  QR code pose estimation with respect to a camera in both real and simulated world
 
-Here we summarize the main step required to run both task1 and task2. However we have written a step by step tutorial on how to use docker together with gazebo,rviz,rqt and apply the constructed container to our example. To know more check [this file](qr)
+Here we summarize the main step required to run both task1 and task2. However we have written a step by step tutorial on how to use docker together with gazebo,rviz,rqt and apply the constructed container to our example. To know more check [this file](qr_reader_ros_ws/src/instructions.md)
 
 ### Setup
 
@@ -51,6 +51,7 @@ docker build -t ros-melodic-desktop-full .
 
 ###  Task 1 (Real Environment)
 
+Launch task1
 ```
 cd qr_reader/qr_reader_ros_ws/src &&  \
 ./launch_full_task1.sh
@@ -67,6 +68,13 @@ Extra Requirements: For this example it is required to have:
 * nvidia recent drivers installed on your machine. We will use nvidia driver to run gazebo inside the docker container.
 * if you are interested in support also audio inside gazebo simulation we also need ALSA drivers
 
+Build Gazebo models, we have to do this only one time
+```
+cd qr_reader/qr_reader_ros_ws/src/gazebo_models_pkg &&  \
+mdkir -p build && cd build && cmake .. && make 
+```
+
+Launch task2
 ```
 cd qr_reader/qr_reader_ros_ws/src &&  \
 ./launch_full_task2.sh
