@@ -1,37 +1,3 @@
-# QR Detector
-
-## Introduction
-
-In this report we focused our attention on how to detect and extract QR data. In doing this we focused our attention on the [zbar](http://zbar.sourceforge.net/) library.  In particular we have tested the qr code detector in python using the pyzbar package and on c++ using the zbar library available on the remote (apt install libzbar-dev).
-
-We are interested in real time application and for this reason we have build a simple docker [ROS](https://www.ros.org/) setup. The latter contains the usb_cam node (to get raw image from a camera) and the QR detector node in charge of detecting the QR and display the result. We have build a result image called "image_result" that is shown automatically using image_view.
-
-
-## Setup 
-
-### Run python qr detector
-It works with both pytho2 and python3. 
-
-```
-cd qr_reader_python
-pip install pyzbar opencv-python numpy 
-python qr_reader_opencv.py
-or
-python qr_reader_pyzbar.py
-```
-We have notice that the pyzbar implementation is able to detect the qr at larger distance than the opencv one. 
-
-### Run cpp qr detector
-C++ implementation based on [this example](https://www.learnopencv.com/opencv-qr-code-scanner-c-and-python/)
-
-```
-cd qr_reader_cpp
-mdkir -p build
-cd build
-cmake ..
-make
-./run_qr_reader
-```
 
 ## Let's use docker ROS container!
 

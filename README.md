@@ -1,5 +1,7 @@
 # QR Detector and pose estimation with respect to a camera
 
+TUTORIAL ON HOW TO SETUP DOCKER WITH ROS GAZEBO, RVIZ, RQT IS AVAILABLE  [HERE](qr_reader_ros_ws/src/instructions.md)
+
 ## Introduction
 
  In this repository we are going to focus our attention on:
@@ -36,7 +38,7 @@ make
 
 ## Case 2) Implementing  QR code pose estimation with respect to a camera in both real and simulated world
 
-Here we summarize the main step required to run both task1 and task2. However we have written a step by step tutorial on how to use docker together with gazebo,rviz,rqt and apply the constructed container to our example. To know more check [this file](qr_reader_ros_ws/src/instructions.md)
+Here we summarize the main step required to run both task1 and task2. However we have written a step by step tutorial on how to use docker together with gazebo,rviz,rqt and apply the constructed container to our example. 
 
 ### Setup
 
