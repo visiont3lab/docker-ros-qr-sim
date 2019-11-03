@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/manuel/visiont3lab-github/qr_reader/qr_reader_ros_ws/src/gazebo_models_pkg/build/devel/setup.sh

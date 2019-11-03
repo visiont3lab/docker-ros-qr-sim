@@ -14,9 +14,10 @@ import pyzbar.pyzbar as pyzbar
 
 class image_qr:
 
-    def __init__(self):
-        self.image_sub = rospy.Subscriber("/usb_cam/image_raw",Image,self.callback)
-        self.image_pub = rospy.Publisher("image_result",Image,queue_size=1)
+    def __init__(self,camera_topic_name,output_topic_name):
+   
+        self.image_sub = rospy.Subscriber(camera_topic_name,Image,self.callback)
+        self.image_pub = rospy.Publisher(output_topic_name,Image,queue_size=1)
         self.bridge = CvBridge()
 
     def callback(self,data):
@@ -47,7 +48,7 @@ class image_qr:
         for j in range(0,n):
             cv2.line(im, hull[j], hull[ (j+1) % n], (255,0,0), 3)
         
-        cv2.putText(im, qr_type + ": " + qr_data, hull[0], 0, 0.8, (0, 255, 0), 2)
+        cv2.putText(im, qr_data, hull[0], 0, 1, (0, 0, 255), 2)
  
         return im
 
@@ -67,8 +68,12 @@ class image_qr:
             
     
 def main(args):
-    rospy.init_node('qr_detector_node', anonymous=True)
-    ic = image_qr()
+    rospy.init_node("qr_detector_node", anonymous=True)
+
+    camera_topic_name = rospy.get_param("~camera_topic_name",default='/usb_cam/image_raw')
+    output_topic_name = rospy.get_param("~output_topic_name",default='/image_result')
+
+    ic = image_qr(camera_topic_name,output_topic_name)
     try:
         rospy.spin()
     except KeyboardInterrupt:

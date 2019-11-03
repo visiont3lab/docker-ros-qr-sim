@@ -1,0 +1,18 @@
+<!-- launches speed_controller -->
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+ <arg name="world_name" default="basic"/>
+
+  <env name="GAZEBO_PLUGIN_PATH" value="${GAZEBO_PLUGIN_PATH}:$(env HOME)/catkin_ws/src/gazebo_models_pkg/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(env HOME)/catkin_ws/src/gazebo_models_pkg/models"/>
+  <env name="GAZEBO_MODEL_DATABASE_URI" value=""/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(env HOME)/catkin_ws/src/gazebo_models_pkg/worlds/$(arg world_name).world"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+</launch>
