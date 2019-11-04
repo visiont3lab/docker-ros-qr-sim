@@ -88,13 +88,6 @@ Extra Requirements: For this example it is required to have:
 * nvidia recent drivers installed on your machine. We will use nvidia driver to run gazebo inside the docker container.
 * if you are interested in support also audio inside gazebo simulation we also need ALSA drivers
 
-Build Gazebo models, we have to do this only one time
-
-```
-cd $QR_READER/qr_reader_ros_ws/src/gazebo_models_pkg &&  \
-mdkir -p build && cd build && cmake .. && make 
-```
-
 Launch task2
 
 ```
