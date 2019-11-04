@@ -7,7 +7,7 @@
         --env="QT_X11_NO_MITSHM=1" \
         --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
         --env ROS_MASTER_URI=http://localhost:11311 \
-        --volume="$HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src:/root/catkin_ws/src/" \
+        --volume="$QR_READER/qr_reader_ros_ws/src:/root/catkin_ws/src/" \
         --device="/dev/video0:/dev/video0" \
         --publish="30000:30000" \
         ros-melodic-desktop-full \

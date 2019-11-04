@@ -13,7 +13,7 @@
         -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
         -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native:Z \
         --group-add $(getent group audio | cut -d: -f3) \
-        -v $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
-        -v $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src:/root/catkin_ws/src/ \
+        -v $QR_READER/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
+        -v $QR_READER/qr_reader_ros_ws/src:/root/catkin_ws/src/ \
         ros-melodic-desktop-full \
         bash 

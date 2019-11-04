@@ -1,10 +1,23 @@
 # QR Detector and pose estimation with respect to a camera
 
-TUTORIAL ON HOW TO SETUP DOCKER WITH ROS GAZEBO, RVIZ, RQT IS AVAILABLE  [HERE](qr_reader_ros_ws/src/instructions.md)
+```
+cd $HOME
+git clone https://github.com/visiont3lab/qr_reader.git
+```
+
+For the sake of simplicity we are going to set an environment variable to avoid issues with paths.
+Ensure that the path is correctly set.
+
+```
+echo "export QR_READER=$HOME/qr_reader" >> $HOME/.bashrc && source $HOME/.bashrc
+```
+
+We also provide a detailed tutorial on how to setup docker with ROS,GAZEBO, RVIZ and RQT.  [MORE INFORMATION HERE](qr_reader_ros_ws/src/instructions.md)
+
 
 ## Introduction
 
- In this repository we are going to focus our attention on:
+In this repository we are going to focus our attention on:
 
 1. Case 1) QR detection and decoding using both python and c++. In doing this we focused our attention on the [zbar](http://zbar.sourceforge.net/) library.  In particular we have tested the qr code detector in python using the pyzbar package and on c++ using the zbar library available on the remote (apt install libzbar-dev).
 2. Case 2) Moving QR pose (position and orientation) estimation with respect to a fixed camera  in both real and simulated world. To do this we have developed a small ROS workspace. We have chosen to run ROS  inside a docker container. In particular, we have developed two different scenarios:
@@ -17,7 +30,7 @@ TUTORIAL ON HOW TO SETUP DOCKER WITH ROS GAZEBO, RVIZ, RQT IS AVAILABLE  [HERE](
 It works with both python2 and python3. 
 
 ```
-cd qr_reader/qr_reader_python
+cd $QR_READER/qr_reader_python
 pip install pyzbar opencv-python numpy 
 python qr_reader_opencv.py
 or
@@ -27,8 +40,10 @@ We have notice that the pyzbar implementation is able to detect the qr at larger
 
 ### Run cpp qr detector
 C++ implementation based on [this example](https://www.learnopencv.com/opencv-qr-code-scanner-c-and-python/)
+It is required to have opencv installed on your pc. More information available [here](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html)
+
 ```
-cd qr_reader/qr_reader_cpp
+cd $QR_READER/qr_reader_cpp
 mdkir -p build
 cd build
 cmake ..
@@ -47,17 +62,20 @@ Here we summarize the main step required to run both task1 and task2. However we
 sudo apt install xfce4-terminal
 
 # Build Docker ros-melodic-desktop-full image
-cd qr_reader/qr_reader_ros_ws/src &&   \
+cd $QR_READER/qr_reader_ros_ws/src &&   \
 docker build -t ros-melodic-desktop-full .
+
 ```
 
 ###  Task 1 (Real Environment)
 
 Launch task1
+
 ```
-cd qr_reader/qr_reader_ros_ws/src &&  \
+cd $QR_READER/qr_reader_ros_ws/src &&  \
 ./launch_full_task1.sh
 ```
+
 It will take around 20 sec to start cause we are also compiling the added ros packages inside the docker container.
 
 Go to http://0.0.0.0:30000 to see the results (click on /output))
@@ -71,14 +89,16 @@ Extra Requirements: For this example it is required to have:
 * if you are interested in support also audio inside gazebo simulation we also need ALSA drivers
 
 Build Gazebo models, we have to do this only one time
+
 ```
-cd qr_reader/qr_reader_ros_ws/src/gazebo_models_pkg &&  \
+cd $QR_READER/qr_reader_ros_ws/src/gazebo_models_pkg &&  \
 mdkir -p build && cd build && cmake .. && make 
 ```
 
 Launch task2
+
 ```
-cd qr_reader/qr_reader_ros_ws/src &&  \
+cd $QR_READER/qr_reader_ros_ws/src &&  \
 ./launch_full_task2.sh
 ```
 

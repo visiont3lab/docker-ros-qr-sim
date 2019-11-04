@@ -43,8 +43,8 @@ class image_qr:
             print(e)
     
     def callback_camera_info(self,data):
-        self.K_high = np.array(data.K,np.float32).reshape(3,3)
-        self.D_high = np.array(data.D,np.float32)
+        self.K = np.array(data.K,np.float32).reshape(3,3)
+        self.D = np.array(data.D,np.float32)
  
     def draw(self,points,im, qr_type, qr_data):
         # If the points do not form a quad, find convex hull
@@ -130,7 +130,6 @@ class image_qr:
                 axis = np.float32([[3,0,0], [0,3,0], [0,0,-3]]).reshape(-1,3)
                 imgpts, jac = cv2.projectPoints(axis, rvecs, tvecs, K, D)
              
-                
                 cv2.putText(img, "x : " + str(round(tvecs[0][0],2)), (0,40), 0, 1, (0, 0, 255), 2)
                 cv2.putText(img, "y : " + str(round(tvecs[1][0],2)), (0,80), 0, 1, (0, 0, 255), 2)
                 cv2.putText(img, "z : " + str(round(tvecs[2][0],2)), (0,120), 0, 1, (0, 0, 255), 2)

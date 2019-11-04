@@ -21,7 +21,7 @@ To achieve both the goals we will use the following ros packages contained insid
 * gazebo_models_pkg (only for simulation): This folder contains everything we need to run our custom gazebo simulation. In particular, inside the foldder worlds there is the qr_world.world file and inside models we will find instead all the models that we will use for the simulation. It is important to point out that some models require plugin that has to be build separately. Therefore before to build our workspace we need to build the build the plugins as following:
   
     ```    
-    cd gazebo_models_pkg
+    cd $QR_READER/qr_reader_row_ws/src/gazebo_models_pkg
     mkdir -p build && cd build
     cmake .. && make 
     # To modify the plugin you can modify the content of the src folder
@@ -97,7 +97,7 @@ We do this on the host machine.
                 -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
                 -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native:Z \
                 --group-add $(getent group audio | cut -d: -f3) \
-                -v $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
+                -v $QR_READER/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
                 ros-melodic-desktop-full \
                 bash' \
         > start_docker_test.sh
@@ -156,7 +156,7 @@ echo \
         --env="QT_X11_NO_MITSHM=1" \
         --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
         --env ROS_MASTER_URI=http://localhost:11311 \
-        --volume="$HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src:/root/catkin_ws/src/" \
+        --volume="$QR_READER/qr_reader_ros_ws/src:/root/catkin_ws/src/" \
         --device="/dev/video0:/dev/video0" \
         --publish="30000:30000" \
         ros-melodic-desktop-full \
@@ -246,8 +246,8 @@ echo \
 	    -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
 	    -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native:Z \
     	--group-add $(getent group audio | cut -d: -f3) \
-        -v $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src:/root/catkin_ws/src/ \
-        -v $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
+        -v $QR_READER/qr_reader_ros_ws/src:/root/catkin_ws/src/ \
+        -v $QR_READER/qr_reader_ros_ws/src/config.yaml:/root/.ignition/fuel/config.yaml  \
         ros-melodic-desktop-full \
         bash ' \
 > start_docker_task2.sh
@@ -294,10 +294,10 @@ docker exec -it ros_melodic_desktop_full_task_2 /bin/bash -c  'pkill -9 gazebo; 
 * Host Commands ( My pc where ros-melodic-desktop full is installed)
 
     ```
-    cd $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/ && catkin_make
-    souce $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/devel/setup.bash
+    cd $QR_READER/qr_reader_ros_ws/ && catkin_make
+    souce $QR_READER/qr_reader_ros_ws/devel/setup.bash
     roscore
-    roslaunch $HOME/visiont3lab-github/qr_reader/qr_reader_ros_ws/src/gazebo_models_pkg/my_world_host.launch --wait world_name:=qr_world; 
+    roslaunch $QR_READER/qr_reader_ros_ws/src/gazebo_models_pkg/my_world_host.launch --wait world_name:=qr_world; 
     roslaunch web_video_server web_video_server.launch
     roslaunch qr_detector_pkg qr_detector_cams.launch
     pkill -9 gazebo; pkill -9 gzserver; killall -9 gzclient;

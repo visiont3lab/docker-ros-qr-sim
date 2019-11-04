@@ -66,7 +66,6 @@ class image_qr:
         self.K_low = np.array(data.K,np.float32).reshape(3,3)
         self.D_low = np.array(data.D,np.float32)
      
-
     def draw(self,points,im, qr_type, qr_data):
         # If the points do not form a quad, find convex hull
         if len(points) > 4 : 

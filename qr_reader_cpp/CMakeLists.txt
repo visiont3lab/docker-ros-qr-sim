@@ -8,7 +8,6 @@ add_definitions(-std=c++11)
 #add_definitions(-std=c++0x)
 #add_definitions(-std=c++03)
 
-set(DIR_Lib $ENV{THERMOHUMAN}/lib)
 set(DIR_OpenCV ${DIR_Lib}/opencv)
 
 

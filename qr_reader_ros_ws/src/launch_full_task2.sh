@@ -7,6 +7,9 @@ exec bash\""  \
 --tab --title "ROSCORE" --command "bash -c \"
 sleep 4 && docker exec -it ros_melodic_desktop_full_task_2 /bin/bash -c 'cd /root/catkin_ws && source /opt/ros/melodic/setup.bash && catkin_make && source /root/catkin_ws/devel/setup.bash && roscore';
 exec bash\""  \
+--tab --title "ROSCORE" --command "bash -c \"
+sleep 6 && docker exec -it ros_melodic_desktop_full_task_2 /bin/bash -c 'cd /root/catkin_ws/src/gazebo_models_pkg/ && mdkir -p build && cd build && cmake .. && make';
+exec bash\""  \
 --tab --title "GAZEBO SIMULATION"	--command "bash -c \"
 sleep 15 && docker exec -it ros_melodic_desktop_full_task_2 /bin/bash -c 'source /root/catkin_ws/devel/setup.bash && roslaunch /root/catkin_ws/src/gazebo_models_pkg/my_world.launch --wait world_name:=qr_world';
 exec bash\""  \
