@@ -1,0 +1,9 @@
+<launch>
+   <!-- This node will launch web video server -->
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server" >
+    <param name="port" value="30000" />
+    <param name="address" value="0.0.0.0" />
+    <param name="server_threads" value="1" />  <!-- The number of threads used to serve HTTP requests (these are not used for actual image streams). -->
+    <param name="ros_threads" value="4" />     <!-- . These threads are used to do the actual image encoding -->
+  </node>
+</launch>
