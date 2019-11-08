@@ -2,14 +2,14 @@
 
 ```
 cd $HOME
-git clone https://github.com/visiont3lab/qr_reader.git
+git clone https://github.com/visiont3lab/docker-ros-qr-sim.git
 ```
 
 For the sake of simplicity we are going to set an environment variable to avoid issues with paths.
 Ensure that the path is correctly set.
 
 ```
-echo "export QR_READER=$HOME/qr_reader" >> $HOME/.bashrc && source $HOME/.bashrc
+echo "export ROS_QR_SIM=$HOME/docker-ros-qr-sim" >> $HOME/.bashrc && source $HOME/.bashrc
 ```
 
 We also provide a detailed tutorial on how to setup docker with ROS,GAZEBO, RVIZ and RQT.  [MORE INFORMATION HERE](qr_reader_ros_ws/src/instructions.md)
@@ -30,7 +30,7 @@ In this repository we are going to focus our attention on:
 It works with both python2 and python3. 
 
 ```
-cd $QR_READER/qr_reader_python
+cd $ROS_QR_SIM/qr_reader_python
 pip install pyzbar opencv-python numpy 
 python qr_reader_opencv.py
 or
@@ -43,7 +43,7 @@ C++ implementation based on [this example](https://www.learnopencv.com/opencv-qr
 It is required to have opencv installed on your pc. More information available [here](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html)
 
 ```
-cd $QR_READER/qr_reader_cpp
+cd $ROS_QR_SIM/qr_reader_cpp
 mdkir -p build
 cd build
 cmake ..
@@ -62,7 +62,7 @@ Here we summarize the main step required to run both task1 and task2. However we
 sudo apt install xfce4-terminal
 
 # Build Docker ros-melodic-desktop-full image
-cd $QR_READER/qr_reader_ros_ws/src &&   \
+cd $ROS_QR_SIM/qr_reader_ros_ws &&   \
 docker build -t ros-melodic-desktop-full .
 
 ```
@@ -72,7 +72,7 @@ docker build -t ros-melodic-desktop-full .
 Launch task1
 
 ```
-cd $QR_READER/qr_reader_ros_ws/src &&  \
+cd $ROS_QR_SIM/qr_reader_ros_ws/scripts &&  \
 ./launch_full_task1.sh
 ```
 
@@ -91,7 +91,7 @@ Extra Requirements: For this example it is required to have:
 Launch task2
 
 ```
-cd $QR_READER/qr_reader_ros_ws/src &&  \
+cd $ROS_QR_SIM/qr_reader_ros_ws/scripts &&  \
 ./launch_full_task2.sh
 ```
 

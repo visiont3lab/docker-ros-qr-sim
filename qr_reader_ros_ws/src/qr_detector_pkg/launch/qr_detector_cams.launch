@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="qr_detector_pkg" type="qr_detector cams.py" name="qr_detector_node_cams" output="screen">
+    <node pkg="qr_detector_pkg" type="qr_detector_cams.py" name="qr_detector_node_cams" output="screen">
     </node>
 </launch>
 
