@@ -20,9 +20,9 @@ We also provide a detailed tutorial on how to setup docker with ROS,GAZEBO, RVIZ
 ## Setup
 
 ```
-cd $HOME
-sudo apt install xfce4-terminal
-git clone https://github.com/visiont3lab/docker-ros-qr-sim.git
+cd $HOME && \
+sudo apt install xfce4-terminal && \
+git clone https://github.com/visiont3lab/docker-ros-qr-sim.git && \
 echo "export ROS_QR_SIM=$HOME/docker-ros-qr-sim" >> $HOME/.bashrc && source $HOME/.bashrc
 ```
 
@@ -32,8 +32,8 @@ echo "export ROS_QR_SIM=$HOME/docker-ros-qr-sim" >> $HOME/.bashrc && source $HOM
 It works with both python2 and python3. 
 
 ```
-cd $ROS_QR_SIM/qr_reader_python
-pip install pyzbar opencv-python numpy 
+cd $ROS_QR_SIM/qr_reader_python && \
+pip install pyzbar opencv-python numpy && \ 
 python qr_reader_opencv.py
 or
 python qr_reader_pyzbar.py
@@ -45,11 +45,11 @@ C++ implementation based on [this example](https://www.learnopencv.com/opencv-qr
 It is required to have opencv installed on your pc. More information available [here](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html)
 
 ```
-cd $ROS_QR_SIM/qr_reader_cpp
-mdkir -p build
-cd build
-cmake ..
-make
+cd $ROS_QR_SIM/qr_reader_cpp && \
+mdkir -p build && \
+cd build && \
+cmake .. && \
+make && \
 ./run_qr_reader
 ```
 
