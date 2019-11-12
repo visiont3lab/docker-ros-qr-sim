@@ -10,5 +10,5 @@
         --volume="$ROS_QR_SIM/qr_reader_ros_ws/src:/root/catkin_ws/src/" \
         --device="/dev/video0:/dev/video0" \
         --publish="30000:30000" \
-        ros-melodic-desktop-full \
+        visiont3lab/ros-melodic-desktop-full:x86 \
         bash 

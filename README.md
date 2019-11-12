@@ -1,20 +1,5 @@
 # QR Detector and pose estimation with respect to a camera
 
-```
-cd $HOME
-git clone https://github.com/visiont3lab/docker-ros-qr-sim.git
-```
-
-For the sake of simplicity we are going to set an environment variable to avoid issues with paths.
-Ensure that the path is correctly set.
-
-```
-echo "export ROS_QR_SIM=$HOME/docker-ros-qr-sim" >> $HOME/.bashrc && source $HOME/.bashrc
-```
-
-We also provide a detailed tutorial on how to setup docker with ROS,GAZEBO, RVIZ and RQT.  [MORE INFORMATION HERE](qr_reader_ros_ws/src/instructions.md)
-
-
 ## Introduction
 
 In this repository we are going to focus our attention on:
@@ -23,6 +8,23 @@ In this repository we are going to focus our attention on:
 2. Case 2) Moving QR pose (position and orientation) estimation with respect to a fixed camera  in both real and simulated world. To do this we have developed a small ROS workspace. We have chosen to run ROS  inside a docker container. In particular, we have developed two different scenarios:
     1.  Task 1 (Real Environment): Given an USB camera we are going to estimate the QR code position with respect to the USB camera.
     2.  Task 2 (Simulated Environment): We have simulated a small warehouse where there are some moving QR code and two fixed camera. The objective is to estimate the position of the QR code with respect to the camera. 
+
+We also provide a detailed tutorial on how to setup docker with ROS,GAZEBO, RVIZ and RQT.  [MORE INFORMATION HERE](qr_reader_ros_ws/src/instructions.md)
+
+
+## Requirements
+
+* [Install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
+* [Install nvidia-docker2](https://github.com/NVIDIA/nvidia-docker)
+
+## Setup
+
+```
+cd $HOME
+sudo apt install xfce4-terminal
+git clone https://github.com/visiont3lab/docker-ros-qr-sim.git
+echo "export ROS_QR_SIM=$HOME/docker-ros-qr-sim" >> $HOME/.bashrc && source $HOME/.bashrc
+```
 
 ## Case 1) Testing QR detection and decoding
 
@@ -54,18 +56,6 @@ make
 ## Case 2) Implementing  QR code pose estimation with respect to a camera in both real and simulated world
 
 Here we summarize the main step required to run both task1 and task2. However we have written a step by step tutorial on how to use docker together with gazebo,rviz,rqt and apply the constructed container to our example. 
-
-### Setup
-
-```
-# Xfce terminal to open multiple terminal simultaneously
-sudo apt install xfce4-terminal
-
-# Build Docker ros-melodic-desktop-full image
-cd $ROS_QR_SIM/qr_reader_ros_ws &&   \
-docker build -t ros-melodic-desktop-full .
-
-```
 
 ###  Task 1 (Real Environment)
 
